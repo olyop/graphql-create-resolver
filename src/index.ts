@@ -1,6 +1,6 @@
 import { GraphQLResolveInfo } from "graphql"
 
-type CreateResolverCheckContextFunction<C> =
+export type CreateResolverCheckContextFunction<C> =
 	(context: C) => void
 
 export interface CreateResolverParameter<P, A, C> {
