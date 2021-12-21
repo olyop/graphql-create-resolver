@@ -24,7 +24,7 @@
 		"delete-build": "rm -r -f dist",
 		"prepublishOnly": "npm run delete-build && npm run build",
 		"sync": "git checkout . && git remote update && git pull",
-		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin master"
+		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin main"
 	},
 	"peerDependencies": {
 		"graphql": "16"
