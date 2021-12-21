@@ -14,11 +14,11 @@ export type CreateResolverCallback<P, A, C, R> =
 	(props: CreateResolverParameter<P, A, C>) => R | Promise<R>
 
 export const createRootResolver =
-	<C = undefined>(checkContextFunction: CreateResolverCheckContextFunction<C>) =>
+	<C = undefined>(checkContextFunction?: CreateResolverCheckContextFunction<C>) =>
 		<P = undefined>() =>
 			<R, A = undefined>(callback: CreateResolverCallback<P, A, C, R>, checkContext = true) =>
 				(parent: P, args: A, context: C, info: GraphQLResolveInfo) => {
-					if (checkContext) {
+					if (checkContext && checkContextFunction) {
 						checkContextFunction(context)
 					}
 					return callback({ parent, args, context, info })
