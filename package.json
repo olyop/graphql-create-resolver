@@ -1,7 +1,7 @@
 {
 	"types": "build",
 	"license": "MIT",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"main": "build/index.js",
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
@@ -16,12 +16,12 @@
 		"url": "https://github.com/olyop/graphql-create-resolver.git"
 	},
 	"files": [
-		"dist"
+		"build"
 	],
 	"scripts": {
 		"build": "npx tsc",
 		"postpublish": "npm run push",
-		"delete-build": "rm -r -f dist",
+		"delete-build": "rm -r -f build",
 		"prepublishOnly": "npm run delete-build && npm run build",
 		"sync": "git checkout . && git remote update && git pull",
 		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin main"
