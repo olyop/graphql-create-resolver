@@ -13,7 +13,7 @@ export interface CreateResolverParameter<P, A, C> {
 export type CreateResolverCallback<P, A, C, R> =
 	(props: CreateResolverParameter<P, A, C>) => R | Promise<R>
 
-export const createResolver =
+export const createRootResolver =
 	<C = undefined>(checkContextFunction: CreateResolverCheckContextFunction<C>) =>
 		<P = undefined>() =>
 			<R, A = undefined>(callback: CreateResolverCallback<P, A, C, R>, checkContext = true) =>
