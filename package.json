@@ -1,7 +1,7 @@
 {
 	"types": "build",
 	"license": "MIT",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "build/index.js",
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
