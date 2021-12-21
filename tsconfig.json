@@ -2,7 +2,8 @@
 	"extends": "@oly_op/tsconfig/tsconfig.json",
 	"compilerOptions": {
 		"outDir": "build",
-		"declaration": true
+		"declaration": true,
+		"module": "CommonJS"
 	},
 	"include": [
 		"src",
