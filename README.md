@@ -1,6 +1,6 @@
 # graphql-create-resolver
 
-A simple utility that assists you in creating your GraphQL resolvers.
+A simple utility that assists you in creating your GraphQL resolver functions.
 
 Can be used in any [GraphQL.js](https://graphql.org/graphql-js/) server integration.
 
@@ -11,7 +11,7 @@ Can be used in any [GraphQL.js](https://graphql.org/graphql-js/) server integrat
 ## Installation
 
 ```bash
-npm i graphql-create-resolver
+npm i @oly_op/graphql-create-resolver
 ```
 
 ## TypeScript Support
@@ -28,7 +28,8 @@ import { createRootResolver } from "@oly_op/graphql-create-resolver"
 const createResolver = createRootResolver()
 ```
 
-Then for each resolver field you have to create a new createResolver function.
+Then for each root resolver field you have to create a new createResolver function.
+Here is the where you could parse in the parent type to the resolver.
 
 For example for the Query field:
 
@@ -60,7 +61,7 @@ interface CreateResolverParameter<P, A, C> {
 type CreateResolverCallback<P, A, C, R> =
   (props: CreateResolverParameter<P, A, C>) => R | Promise<R>;
 
-declare const creteRootResolver:
+type creteRootResolver =
   <C = undefined>(checkContextFunction?: CreateResolverCheckContextFunction<C>) =>
     <P = undefined>() =>
       <R, A = undefined>(callback: CreateResolverCallback<P, A, C, R>, checkContext?: boolean) =>
