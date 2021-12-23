@@ -6,7 +6,7 @@
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
 	"bugs": "https://github.com/olyop/graphql-create-resolver/issues",
-	"homepage": "https://github.com/olyop/graphql-create-resolver/blob/master/README.md",
+	"homepage": "https://github.com/olyop/graphql-create-resolver/blob/main/README.md",
 	"author": {
 		"name": "Oliver Plummer",
 		"email": "oliver.plummer@outlook.com"
