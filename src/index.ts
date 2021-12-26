@@ -31,28 +31,25 @@ export interface CheckContextOptions {
 	globalContext?: boolean,
 }
 
-export interface Options {
-	check: CheckContextOptions,
-}
-
 export type Callback<P, A, C, R> =
 	(props: Parameter<P, A, C>) => R | Promise<R>
 
 export const createRootResolver =
 	<C = undefined>(globalCheckContextFunction?: CheckContextFunction<C>) =>
 		<P = undefined>(parentCheckContextFunction?: CheckGlobalContextFunction<P, C>) =>
-			<R, A = undefined>(callback: Callback<P, A, C, R>, options: Options) =>
+			<R, A = undefined>(callback: Callback<P, A, C, R>, checkOptions?: CheckContextOptions) =>
 				(parent: P, args: A, context: C, info: GraphQLResolveInfo) => {
-					const {
-						globalContext = true,
-						parentContext = true,
-					} = options.check
+					const normalizedCheckOptions: CheckContextOptions = {
+						globalContext: true,
+						parentContext: true,
+						...checkOptions || {},
+					}
 
-					if (globalContext && globalCheckContextFunction) {
+					if (normalizedCheckOptions.globalContext && globalCheckContextFunction) {
 						globalCheckContextFunction({ context })
 					}
 
-					if (parentContext && parentCheckContextFunction) {
+					if (normalizedCheckOptions.parentContext && parentCheckContextFunction) {
 						parentCheckContextFunction({ context, parent })
 					}
 
