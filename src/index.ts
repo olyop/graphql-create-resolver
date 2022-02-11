@@ -20,15 +20,15 @@ export interface CheckContextFunctionOptions<C, P = undefined>
 export type CheckContextFunction<C> =
 	(parameter: ParameterContext<C>) => void
 
-export interface CheckGlobalContextFunctionOptions<P, C>
+export interface CheckParentContextFunctionOptions<P, C>
 	extends ParameterParent<P>, ParameterContext<C> {}
 
-export type CheckGlobalContextFunction<P, C> =
-	(parameter: CheckGlobalContextFunctionOptions<P, C>) => void
+export type CheckParentContextFunction<P, C> =
+	(parameter: CheckParentContextFunctionOptions<P, C>) => void
 
-export interface CheckContextOptions {
-	parentContext?: boolean,
+export interface CheckOptions {
 	globalContext?: boolean,
+	parentContext?: boolean,
 }
 
 export type Callback<P, A, C, R> =
@@ -36,20 +36,20 @@ export type Callback<P, A, C, R> =
 
 export const createRootResolver =
 	<C = undefined>(globalCheckContextFunction?: CheckContextFunction<C>) =>
-		<P = undefined>(parentCheckContextFunction?: CheckGlobalContextFunction<P, C>) =>
-			<R, A = undefined>(callback: Callback<P, A, C, R>, checkOptions?: CheckContextOptions) =>
+		<P = undefined>(parentCheckContextFunction?: CheckParentContextFunction<P, C>) =>
+			<R, A = undefined>(callback: Callback<P, A, C, R>, inputCheckOptions?: CheckOptions) =>
 				(parent: P, args: A, context: C, info: GraphQLResolveInfo) => {
-					const normalizedCheckOptions: CheckContextOptions = {
+					const checkOptions: CheckOptions = {
 						globalContext: true,
 						parentContext: true,
-						...checkOptions || {},
+						...inputCheckOptions || {},
 					}
 
-					if (normalizedCheckOptions.globalContext && globalCheckContextFunction) {
+					if (checkOptions.globalContext && globalCheckContextFunction) {
 						globalCheckContextFunction({ context })
 					}
 
-					if (normalizedCheckOptions.parentContext && parentCheckContextFunction) {
+					if (checkOptions.parentContext && parentCheckContextFunction) {
 						parentCheckContextFunction({ context, parent })
 					}
 

@@ -1,7 +1,7 @@
 {
 	"types": "build",
 	"license": "MIT",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"main": "build/index.js",
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
@@ -26,20 +26,20 @@
 		"sync": "git checkout . && git remote update && git pull",
 		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin main"
 	},
-	"peerDependencies": {
-		"graphql": "16"
-	},
 	"devDependencies": {
-		"@oly_op/eslint-config": "5.1.6",
-		"@oly_op/tsconfig": "1.0.6",
-		"@typescript-eslint/eslint-plugin": "5.8.0",
-		"@typescript-eslint/parser": "5.8.0",
-		"eslint": "8.5.0",
-		"eslint-config-airbnb": "19.0.2",
+		"@oly_op/eslint-config": "5.1.29",
+		"@oly_op/tsconfig": "1.0.11",
+		"@typescript-eslint/eslint-plugin": "5.11.0",
+		"@typescript-eslint/parser": "5.11.0",
+		"eslint": "8.8.0",
+		"eslint-config-airbnb": "19.0.4",
 		"eslint-config-airbnb-typescript": "16.1.0",
-		"eslint-plugin-import": "2.25.3",
+		"eslint-plugin-import": "2.25.4",
 		"eslint-plugin-node": "11.1.0",
 		"eslint-plugin-promise": "6.0.0",
-		"typescript": "4.5.4"
+		"typescript": "4.5.5"
+	},
+	"dependencies": {
+		"graphql": "16.3.0"
 	}
 }
