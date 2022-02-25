@@ -37,12 +37,18 @@ export type Callback<P, A, C, R> =
 export const createRootResolver =
 	<C = undefined>(globalCheckContextFunction?: CheckContextFunction<C>) =>
 		<P = undefined>(parentCheckContextFunction?: CheckParentContextFunction<P, C>) =>
-			<R, A = undefined>(callback: Callback<P, A, C, R>, checkContextOptions?: CheckContextOptions) =>
+			<R, A = undefined>(callback: Callback<P, A, C, R>, inputCheckContextOptions?: CheckContextOptions) =>
 				(parent: P, args: A, context: C, info: GraphQLResolveInfo) => {
-					if ((checkContextOptions?.global || true) && globalCheckContextFunction) {
+					const checkContextOptions: CheckContextOptions = {
+						global: true,
+						parent: true,
+						...inputCheckContextOptions || {},
+					}
+
+					if (checkContextOptions.global && globalCheckContextFunction) {
 						globalCheckContextFunction({ context })
 					}
-					if ((checkContextOptions?.parent || true) && parentCheckContextFunction) {
+					if (checkContextOptions.parent && parentCheckContextFunction) {
 						parentCheckContextFunction({ context, parent })
 					}
 					return callback({ parent, args, context, info })
