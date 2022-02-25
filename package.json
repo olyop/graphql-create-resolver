@@ -29,9 +29,9 @@
 	"devDependencies": {
 		"@oly_op/eslint-config": "5.1.29",
 		"@oly_op/tsconfig": "1.0.11",
-		"@typescript-eslint/eslint-plugin": "5.11.0",
-		"@typescript-eslint/parser": "5.11.0",
-		"eslint": "8.8.0",
+		"@typescript-eslint/eslint-plugin": "5.12.1",
+		"@typescript-eslint/parser": "5.12.1",
+		"eslint": "8.9.0",
 		"eslint-config-airbnb": "19.0.4",
 		"eslint-config-airbnb-typescript": "16.1.0",
 		"eslint-plugin-import": "2.25.4",
