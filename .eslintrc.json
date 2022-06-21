@@ -2,5 +2,8 @@
 	"extends": "@oly_op",
 	"parserOptions": {
 		"project": "./tsconfig.json"
+	},
+	"env": {
+		"node": true
 	}
 }

@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from "graphql"
+import type { GraphQLResolveInfo } from "graphql"
 
 export interface ParameterParent<P> {
 	parent: P,
@@ -48,8 +48,10 @@ export const createRootResolver =
 					if (checkContextOptions.global && globalCheckContextFunction) {
 						globalCheckContextFunction({ context })
 					}
+
 					if (checkContextOptions.parent && parentCheckContextFunction) {
 						parentCheckContextFunction({ context, parent })
 					}
+
 					return callback({ parent, args, context, info })
 				}

@@ -3,12 +3,10 @@
 	"compilerOptions": {
 		"outDir": "build",
 		"declaration": true,
-		"module": "CommonJS"
+		"module": "CommonJS",
+		"lib": ["ESNext", "DOM"]
 	},
 	"include": [
 		"src",
-	],
-	"exclude": [
-		"build",
 	]
 }

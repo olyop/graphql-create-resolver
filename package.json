@@ -27,19 +27,17 @@
 		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin main"
 	},
 	"devDependencies": {
-		"@oly_op/eslint-config": "5.1.29",
-		"@oly_op/tsconfig": "1.0.11",
-		"@typescript-eslint/eslint-plugin": "5.12.1",
-		"@typescript-eslint/parser": "5.12.1",
-		"eslint": "8.9.0",
+		"@oly_op/eslint-config": "5.1.44",
+		"@oly_op/tsconfig": "1.0.13",
+		"@typescript-eslint/eslint-plugin": "5.27.0",
+		"@typescript-eslint/parser": "5.27.0",
+		"eslint": "8.17.0",
 		"eslint-config-airbnb": "19.0.4",
-		"eslint-config-airbnb-typescript": "16.1.0",
-		"eslint-plugin-import": "2.25.4",
+		"eslint-config-airbnb-typescript": "17.0.0",
+		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-node": "11.1.0",
 		"eslint-plugin-promise": "6.0.0",
-		"typescript": "4.5.5"
-	},
-	"dependencies": {
-		"graphql": "16.3.0"
+		"graphql": "16.5.0",
+		"typescript": "4.7.3"
 	}
 }
