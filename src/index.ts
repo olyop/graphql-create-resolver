@@ -1,57 +1,64 @@
-import type { GraphQLResolveInfo } from "graphql"
+import type { GraphQLResolveInfo } from "graphql";
 
-export interface ParameterParent<P> {
-	parent: P,
+export interface ParameterParent<Parent> {
+	parent: Parent;
 }
 
-export interface ParameterContext<C> {
-	context: C,
+export interface ParameterContext<Context> {
+	context: Context;
 }
 
-export interface Parameter<P, A, C>
-	extends ParameterParent<P>, ParameterContext<C> {
-	args: A,
-	info: GraphQLResolveInfo,
+export interface Parameter<Parent, Arguments, Context>
+	extends ParameterParent<Parent>,
+		ParameterContext<Context> {
+	args: Arguments;
+	info: GraphQLResolveInfo;
 }
 
-export interface CheckContextFunctionOptions<C, P = undefined>
-	extends ParameterContext<C>, Partial<ParameterParent<P>> {}
+export interface CheckContextFunctionOptions<Context, Parent = undefined>
+	extends ParameterContext<Context>,
+		Partial<ParameterParent<Parent>> {}
 
-export type CheckContextFunction<C> =
-	(parameter: ParameterContext<C>) => void
+export type CheckContextFunction<Context> = (parameter: ParameterContext<Context>) => void;
 
-export interface CheckParentContextFunctionOptions<P, C>
-	extends ParameterParent<P>, ParameterContext<C> {}
+export interface CheckParentContextFunctionOptions<Parent, Context>
+	extends ParameterParent<Parent>,
+		ParameterContext<Context> {}
 
-export type CheckParentContextFunction<P, C> =
-	(parameter: CheckParentContextFunctionOptions<P, C>) => void
+export type CheckParentContextFunction<Parent, Context> = (
+	parameter: CheckParentContextFunctionOptions<Parent, Context>,
+) => void;
 
 export interface CheckContextOptions {
-	global?: boolean,
-	parent?: boolean,
+	global?: boolean;
+	parent?: boolean;
 }
 
-export type Callback<P, A, C, R> =
-	(props: Parameter<P, A, C>) => Promise<R>
+export type Callback<Parent, Arguments, Context, Return> = (
+	props: Parameter<Parent, Arguments, Context>,
+) => Promise<Return>;
 
 export const createRootResolver =
-	<C = undefined>(globalCheckContextFunction?: CheckContextFunction<C>) =>
-		<P = undefined>(parentCheckContextFunction?: CheckParentContextFunction<P, C>) =>
-			<R, A = undefined>(callback: Callback<P, A, C, R>, inputCheckContextOptions?: CheckContextOptions) =>
-				(parent: P, args: A, context: C, info: GraphQLResolveInfo) => {
-					const checkContextOptions: CheckContextOptions = {
-						global: true,
-						parent: true,
-						...inputCheckContextOptions || {},
-					}
+	<Context = undefined>(globalCheckContextFunction?: CheckContextFunction<Context>) =>
+	<Parent = undefined>(parentCheckContextFunction?: CheckParentContextFunction<Parent, Context>) =>
+	<Return, Arguments = undefined>(
+		callback: Callback<Parent, Arguments, Context, Return>,
+		inputCheckContextOptions?: CheckContextOptions,
+	) =>
+	(parent: Parent, args: Arguments, context: Context, info: GraphQLResolveInfo) => {
+		const checkContextOptions: CheckContextOptions = {
+			global: true,
+			parent: true,
+			...inputCheckContextOptions,
+		};
 
-					if (checkContextOptions.global && globalCheckContextFunction) {
-						globalCheckContextFunction({ context })
-					}
+		if (checkContextOptions.global && globalCheckContextFunction) {
+			globalCheckContextFunction({ context });
+		}
 
-					if (checkContextOptions.parent && parentCheckContextFunction) {
-						parentCheckContextFunction({ context, parent })
-					}
+		if (checkContextOptions.parent && parentCheckContextFunction) {
+			parentCheckContextFunction({ context, parent });
+		}
 
-					return callback({ parent, args, context, info })
-				}
+		return callback({ parent, args, context, info });
+	};

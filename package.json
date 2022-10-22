@@ -1,7 +1,7 @@
 {
 	"types": "build",
 	"license": "MIT",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"main": "build/index.js",
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
@@ -27,17 +27,21 @@
 		"push": "clear && git status && git add -A && git commit -m \"Update\" && git push -u origin main"
 	},
 	"devDependencies": {
-		"@oly_op/eslint-config": "5.1.44",
-		"@oly_op/tsconfig": "1.0.13",
-		"@typescript-eslint/eslint-plugin": "5.27.0",
-		"@typescript-eslint/parser": "5.27.0",
-		"eslint": "8.17.0",
+		"@oly_op/cspell-dict": "1.0.115",
+		"@oly_op/eslint-config": "6.0.10",
+		"@oly_op/prettier-config": "1.0.13",
+		"@oly_op/tsconfig": "1.0.24",
+		"@typescript-eslint/eslint-plugin": "5.40.1",
+		"cspell": "6.12.0",
+		"eslint": "8.26.0",
 		"eslint-config-airbnb": "19.0.4",
 		"eslint-config-airbnb-typescript": "17.0.0",
 		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-node": "11.1.0",
-		"eslint-plugin-promise": "6.0.0",
-		"graphql": "16.5.0",
-		"typescript": "4.7.3"
+		"eslint-plugin-promise": "6.1.1",
+		"graphql": "16.6.0",
+		"npm-check-updates": "16.3.15",
+		"prettier": "2.7.1",
+		"typescript": "4.8.4"
 	}
 }

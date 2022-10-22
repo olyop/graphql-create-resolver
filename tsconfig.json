@@ -1,12 +1,10 @@
 {
-	"extends": "@oly_op/tsconfig/tsconfig.json",
+	"extends": "@oly_op/tsconfig",
 	"compilerOptions": {
 		"outDir": "build",
 		"declaration": true,
 		"module": "CommonJS",
 		"lib": ["ESNext", "DOM"]
 	},
-	"include": [
-		"src",
-	]
+	"include": ["src"]
 }
