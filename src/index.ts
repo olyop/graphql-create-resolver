@@ -1,4 +1,4 @@
-import type { GraphQLResolveInfo } from "graphql";
+import type { GraphQLFieldResolver, GraphQLResolveInfo } from "graphql";
 
 export interface ParameterParent<Parent> {
 	parent: Parent;
@@ -8,12 +8,19 @@ export interface ParameterContext<Context> {
 	context: Context;
 }
 
-export interface Parameter<Parent, Arguments, Context>
-	extends ParameterParent<Parent>,
-		ParameterContext<Context> {
+export interface ParameterArguments<Arguments> {
 	args: Arguments;
+}
+
+export interface ParameterInfo {
 	info: GraphQLResolveInfo;
 }
+
+export interface Parameter<Parent, Arguments, Context>
+	extends ParameterInfo,
+		ParameterParent<Parent>,
+		ParameterContext<Context>,
+		ParameterArguments<Arguments> {}
 
 export interface CheckContextFunctionOptions<Context, Parent = undefined>
 	extends ParameterContext<Context>,
@@ -44,8 +51,8 @@ export const createRootResolver =
 	<Return, Arguments = undefined>(
 		callback: Callback<Parent, Arguments, Context, Return>,
 		inputCheckContextOptions?: CheckContextOptions,
-	) =>
-	(parent: Parent, args: Arguments, context: Context, info: GraphQLResolveInfo) => {
+	): GraphQLFieldResolver<Parent, Context, Arguments> =>
+	(parent, args, context, info) => {
 		const checkContextOptions: CheckContextOptions = {
 			global: true,
 			parent: true,
