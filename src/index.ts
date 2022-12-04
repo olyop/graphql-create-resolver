@@ -51,7 +51,7 @@ export const createRootResolver =
 	<Return, Arguments = undefined>(
 		callback: Callback<Parent, Arguments, Context, Return>,
 		inputCheckContextOptions?: CheckContextOptions,
-	): GraphQLFieldResolver<Parent, Context, Arguments> =>
+	): GraphQLFieldResolver<Parent, Context, Arguments, Promise<Return>> =>
 	(parent, args, context, info) => {
 		const checkContextOptions: CheckContextOptions = {
 			global: true,
