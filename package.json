@@ -1,12 +1,12 @@
 {
 	"types": "build",
+	"type": "module",
 	"license": "MIT",
-	"version": "2.1.1",
-	"main": "build/index.js",
+	"version": "2.2.0",
 	"description": "graphql-create-resolver",
 	"name": "@oly_op/graphql-create-resolver",
 	"bugs": "https://github.com/olyop/graphql-create-resolver/issues",
-	"homepage": "https://github.com/olyop/graphql-create-resolver/blob/main/README.md",
+	"homepage": "https://github.com/olyop/graphql-create-resolver/blob/main/readme.md",
 	"author": {
 		"name": "Oliver Plummer",
 		"email": "oliver.plummer@outlook.com"
@@ -15,25 +15,33 @@
 		"type": "git",
 		"url": "https://github.com/olyop/graphql-create-resolver.git"
 	},
+	"main": "build/index.js",
+	"module": "build/index.js",
 	"files": [
 		"build"
 	],
+	"exports": {
+		".": {
+			"import": "./build/index.js",
+			"types": "./build/index.d.ts"
+		}
+	},
 	"scripts": {
 		"build": "npx tsc",
 		"postpublish": "npm run push",
 		"delete-build": "rm -r -f build",
-		"prepublishOnly": "npm run delete-build && npm run build",
+		"prepublishOnly": "clear && npm run delete-build && npm run build",
 		"sync": "git checkout . && git remote update && git pull",
 		"push": "git add -A && git commit -m \"Update\" && git push"
 	},
 	"devDependencies": {
 		"@oly_op/cspell-dict": "1.0.115",
-		"@oly_op/eslint-config": "6.0.17",
+		"@oly_op/eslint-config": "6.0.18",
 		"@oly_op/prettier-config": "1.0.21",
-		"@oly_op/tsconfig": "1.0.24",
-		"@typescript-eslint/eslint-plugin": "5.45.0",
-		"cspell": "6.16.0",
-		"eslint": "8.29.0",
+		"@oly_op/tsconfig": "1.0.25",
+		"@typescript-eslint/eslint-plugin": "5.47.0",
+		"cspell": "6.18.0",
+		"eslint": "8.30.0",
 		"eslint-config-airbnb": "19.0.4",
 		"eslint-config-airbnb-typescript": "17.0.0",
 		"eslint-plugin-import": "2.26.0",
@@ -41,11 +49,11 @@
 		"eslint-plugin-node": "11.1.0",
 		"eslint-plugin-prefer-arrow-functions": "3.1.4",
 		"eslint-plugin-promise": "6.1.1",
-		"eslint-plugin-unicorn": "45.0.1",
+		"eslint-plugin-unicorn": "45.0.2",
 		"graphql": "16.6.0",
-		"npm-check-updates": "16.4.3",
-		"prettier": "2.8.0",
-		"typescript": "4.9.3"
+		"npm-check-updates": "16.6.2",
+		"prettier": "2.8.1",
+		"typescript": "4.9.4"
 	},
 	"volta": {
 		"node": "19.2.0",
